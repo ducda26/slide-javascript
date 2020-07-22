@@ -40,23 +40,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Viết hàm tự chuyển slide
     function autoSlide() {
+		// Bước 1: Xác định vị trí slide
+		var vitrislide = 0;
+		var slideHienTai = document.querySelector('.cacslide ul li.active');
+		// console.log(slideHienTai.previousElementSibling);
+		// console.log(slideHienTai);
+		for (vitrislide = 0; slideHienTai = slideHienTai.previousElementSibling; vitrislide++){};
+			// Nếu chưa đến slide cuối cùng tức là vitrislide <= slides.length ---> Hoạt động bình thường
+			if (vitrislide < slides.length-1){
+				//Bước 2: Cho phần tử tiếp theo của slide hiện ra
+				//Cho ẩn hết đi
+				for (var i = 0; i < slides.length; i++) {
+				slides[i].classList.remove('active');
+				nut[i].classList.remove('kichhoat');
+			}
+				// Cho phần tử tiếp theo hiển thị ra
+			slides[vitrislide].nextElementSibling.classList.add('active');
+			nut[vitrislide].nextElementSibling.classList.add('kichhoat');
 
-        // Bước 1: Xác định vị trí slide
-        var vitrislide = 0;
-        var slideHienTai = document.querySelector('.cacslide ul li.active');
-        //console.log(slideHienTai.previousElementSibling);
-        // console.log(slideHienTai);
-        for (vitrislide = 0; slideHienTai = slideHienTai.previousElementSibling; vitrislide++) { };
-        //console.log("Vi tri slide hien tai la" + vitrislide);
+			} else {
+				for (var i = 0; i < slides.length; i++) {
+				slides[i].classList.remove('active');
+				nut[i].classList.remove('kichhoat');
+				}
+				// Cho phần tử tiếp theo hiển thị ra
+			slides[0].classList.add('active');
+			nut[0].classList.add('kichhoat');
 
-        //Cho ẩn hết đi
-        for (var i = 0; i < slides.length; i++) {
-            slides[i].classList.remove('active');
-            nut[i].classList.remove('kichhoat');
-        }
-        // Cho phần tử tiếp theo hiển thị ra
-        slides[vitrislide].nextElementSibling.classList.add('active');
-        nut[vitrislide].nextElementSibling.classList.add('kichhoat');
-
-    }
+			}
+		console.log("Vị trí của nút hiện tại là " + vitrislide);
+	}
 })
