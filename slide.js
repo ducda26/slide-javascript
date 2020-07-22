@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Khai báo một số đối tượng cần sử dụng
     var nut = document.querySelectorAll('.chuyenslide ul li');
+    var slides = document.querySelectorAll('.cacslide ul li');
+    //console.log(slides);
     // nút trả về một mảng
 
     // bắt sự kiện click cho từng nút
@@ -19,11 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
             var vitrinut = 0;
             for (vitrinut = 0; nutkichhoat = nutkichhoat.previousElementSibling; vitrinut++) {
                 //console.log('bien i = ' + vitrinut);
-               // console.log('phần tử nút kích hoạt là' + nutkichhoat)
+                // console.log('phần tử nút kích hoạt là' + nutkichhoat)
             }
             // Hết vòng lặp này biến i = số thứ tự
-            console.log("Vị trí của phần tử có class là kích hoạt là = " + vitrinut);
-
+            // console.log("Vị trí của phần tử có class là kích hoạt là = " + vitrinut);
+            //Bước 1: Cho tất cả Slide ẩn đi remove class active
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+                slides[vitrinut].classList.add("active");
+            }
         })
     }
 })
