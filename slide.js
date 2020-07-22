@@ -2,13 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Khai báo một số đối tượng cần sử dụng
     var nut = document.querySelectorAll('.chuyenslide ul li');
     var slides = document.querySelectorAll('.cacslide ul li');
+    var thoigian = setInterval(function () { autoSlide() }, 3000)
     //console.log(slides);
     // nút trả về một mảng
 
     // bắt sự kiện click cho từng nút
     for (var i = 0; i < nut.length; i++) {
         nut[i].addEventListener('click', function () {
-
+            // Trước tiên hủy tự chuyển động
+            clearInterval(thoigian);
             // Bỏ tất cả màu đèn trước khi add
             for (var i = 0; i < nut.length; i++) {
                 nut[i].classList.remove('kichhoat');
@@ -35,18 +37,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // Hết sự kiện cho nút
 
-    autoSlide();
 
     //Viết hàm tự chuyển slide
     function autoSlide() {
-       // Bước 1: Xác định vị trí slide
-		var vitrislide = 0;
-		var slideHienTai = document.querySelector('.cacslide ul li.active');
-		console.log(slideHienTai.previousElementSibling);
-        // console.log(slideHienTai);
-        for (vitrislide = 0; slideHienTai = slideHienTai.previousElementSibling; vitrislide++){};
-        console.log("Vi tri slide hien tai la" + vitrislide);
 
-        //Bước 2: Cho phần tử tiếp theo của slide hiện ra
+        // Bước 1: Xác định vị trí slide
+        var vitrislide = 0;
+        var slideHienTai = document.querySelector('.cacslide ul li.active');
+        //console.log(slideHienTai.previousElementSibling);
+        // console.log(slideHienTai);
+        for (vitrislide = 0; slideHienTai = slideHienTai.previousElementSibling; vitrislide++) { };
+        //console.log("Vi tri slide hien tai la" + vitrislide);
+
+        //Cho ẩn hết đi
+        for (var i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+            nut[i].classList.remove('kichhoat');
+        }
+        // Cho phần tử tiếp theo hiển thị ra
+        slides[vitrislide].nextElementSibling.classList.add('active');
+        nut[vitrislide].nextElementSibling.classList.add('kichhoat');
+
     }
 })
