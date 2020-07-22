@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // bắt sự kiện click cho từng nút
     for (var i = 0; i < nut.length; i++) {
         nut[i].addEventListener('click', function () {
+
             // Bỏ tất cả màu đèn trước khi add
             for (var i = 0; i < nut.length; i++) {
                 nut[i].classList.remove('kichhoat');
@@ -31,5 +32,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 slides[vitrinut].classList.add("active");
             }
         })
+    }
+    // Hết sự kiện cho nút
+
+    autoSlide();
+
+    //Viết hàm tự chuyển slide
+    function autoSlide() {
+       // Bước 1: Xác định vị trí slide
+		var vitrislide = 0;
+		var slideHienTai = document.querySelector('.cacslide ul li.active');
+		console.log(slideHienTai.previousElementSibling);
+        // console.log(slideHienTai);
+        for (vitrislide = 0; slideHienTai = slideHienTai.previousElementSibling; vitrislide++){};
+        console.log("Vi tri slide hien tai la" + vitrislide);
+
+        //Bước 2: Cho phần tử tiếp theo của slide hiện ra
     }
 })
